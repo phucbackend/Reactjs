@@ -1,0 +1,64 @@
+body {
+  margin: 0;
+  font-family: "Comfortaa";
+  box-sizing: border-box;
+}
+.hearder {
+  margin: 20px 15px;
+}
+.title {
+  font-weight: bold;
+  font-size: 16px;
+}
+a {
+  text-decoration-line: none;
+  color: black;
+}
+.btn1:hover {
+  background-color: #a45d51;
+  color: white;
+  cursor: pointer;
+}
+.btn1 {
+  border: 1px solid #a45d51;
+  background-color: white;
+  color: #a45d51;
+}
+.wrapper span {
+  width: 100%;
+  text-align: center;
+}
+
+.wrapper span.num {
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid rgb(0, 0, 0, 0.2);
+}
+.wrapper span#minus:hover {
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #a45d51;
+  color: white;
+  cursor: pointer;
+}
+.wrapper span#plus:hover {
+  border-bottom-right-radius: 11px;
+  border-top-right-radius: 11px;
+  background-color: #a45d51;
+  color: white;
+  cursor: pointer;
+}
+.fooder {
+  margin-top: 20px;
+  margin-left: 80%;
+}
+.additem {
+  cursor: pointer;
+  position: relative;
+}
+.additem .add {
+  display: none;
+}
+.additem .add:checked ~ .plus {
+  background-color: #a45d51;
+  color: white;
+}

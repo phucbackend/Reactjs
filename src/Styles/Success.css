@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+.header_success {
+  display: flex;
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  height: 100vh; 
+}
+
+img {
+  margin-top: 80px;
+  width: 400px;
+  height: 500px;
+}
+
+.banner,
+.conten {
+
+  text-align: center;
+}
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  gap: 10px;  
+  margin-top: 10px;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  border: 1px solid #a45d51;
+  background-color: white;
+  color: #a45d51;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #a45d51;
+  color: white;
+}
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  max-width: 80%;
+}
+
+.close_modal {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.pizza_images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pizza_img {
+  width: 50px;
+  height: 50px;
+}

@@ -1,0 +1,91 @@
+:root {
+    --text-color: #a45d51;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+img {
+    display: block;
+    max-width: 100%;
+  }
+  .wrapper {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  .container {
+    margin: 0 auto;
+    max-width: 1300px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  body {
+    font-family: "Comfortaa", sans-serif;
+    color: var(--text-color);
+    font-weight: 700;
+  }
+  .banner {
+    position: absolute;
+    width: 550px;
+    padding-top: 13.2rem;
+  }
+  .banner-name {
+    font-size: 3.5rem;
+    line-height: 5rem;
+    display: flex;
+    justify-items: center;
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+  .banner-name1 {
+    font-size: 3.5rem;
+    line-height: 5rem;
+    display: flex;
+    justify-items: center;
+    text-align: center;
+  
+    margin-left: 6rem;
+    margin-bottom: 6rem;
+  }
+  .banner-buttons {
+    margin-left: 5rem;
+  }
+  .btn {
+    cursor: pointer;
+    outline: none;
+    width: 400px;
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 2rem 5rem;
+    display: inline-block;
+    border: 1px solid #a45d51;
+    border-radius: 1.5rem;
+    transition: color 0.5s linear, background 0.5s linear;
+  }
+  .btn:hover {
+    color: white;
+    background-color: #a45d51;
+  }
+  .image-banner {
+    position: absolute;
+    top: 3.5rem;
+    left: 45.5rem;
+  }
+  img {
+    position: absolute;
+    animation: images-banner 0.75s infinite alternate-reverse;
+  }
+  @keyframes images-banner {
+    from {
+      transform: rotate(15deg);
+    }
+    to {
+      transform: rotate(-15deg);
+    }
+  }
+  
