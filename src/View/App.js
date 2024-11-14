@@ -2,7 +2,7 @@
 import Login from "../Components/Login";
 import HomePage from "../Components/HomePage";
 import SignupPage from "../Components/Signup";
-import Payments from "../Components/PaymentPage";
+import Payments from "../Components/Payment";
 import SuccessPage from "../Components/Success";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 

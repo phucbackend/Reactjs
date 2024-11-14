@@ -1,10 +1,9 @@
-import React, {useState} from "react";
+import React from "react";
 import "../Styles/Payment.css"
 import "../Styles/Main.css"
-import Pizza from "../Data/Pizza";
-import { Link } from "react-router-dom";
 
-export function PaymentHeader(){
+
+ function PaymentHeader(){
  
     return(
         <div className="hearder">
@@ -13,7 +12,7 @@ export function PaymentHeader(){
     );
 }
 
-export function PayAccountUser(){
+ function PayAccountUser(){
     return(
       <div className="left">
         <div className="fill-infor">
@@ -27,33 +26,12 @@ export function PayAccountUser(){
       </div>
     ); 
 }
-export function PayOrderProcess(){
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toogleDropDown = () =>{
-      setIsMenuOpen(!isMenuOpen)
-  } ; 
-  return(
-    <div className="order-processing">
-        <div className="order-title">
-          <h1 className="title" style={{marginRight:"10%"}}>ORDER PROCESSING</h1>
-          <div className="dropdown">
-            <div className="more" onClick={toogleDropDown}>More dishes</div>
-            <div id="menu" className= {isMenuOpen ? "show-menu":"hide-menu" }>
-              <ul>             
-                <Link to="/"><li style={{width:"200px"}}>Add More Pizza</li></Link>  
-             </ul>
-            </div>
-          </div>
-        </div>
-        <div id="list-order"></div>
-      </div>
-  ); 
-}
-export function PayyMenthod(){
+ function PayyMenthod(){
   return(
     <div className="payment-methods">
-        <h1 className="title1" >PAYMENT METHODS</h1>
+
+      <h1 className="title-name" >PAYMENT METHODS</h1>
         <div className="methods">
           <div className="methods-detail" onclick="cash()">
             <p>Cash</p>
@@ -68,19 +46,20 @@ export function PayyMenthod(){
             <p>Visa Card</p>
           </div>
         </div>
-      </div>
+      
+    </div>
   ); 
 }
- export function PayNote(){
+function PayNote(){
     return(
       <div>
         <div className="invoice">
-        <h1 className="title1">INVOICE</h1>
+        <h1 className="title-name">COMMENT</h1>
         <div className="methods">
           <form className="payment-form">
             <div className="note">
               <input type="text" id="note" name="note" placeholder="Do you want to note anything to the restaurant?"
-               style={{ backgroundColor: 'white', width: '520px', height: '35px'}} />
+               style={{ backgroundColor: 'white', width: '550px', height: '35px'}} />
             </div>
           </form>
           <div id="inHTML"></div>
@@ -90,4 +69,12 @@ export function PayyMenthod(){
     );
 }
 
+
+export default function Payment() {
+  return(
+    <div className="container">
+      <PaymentHeader /><PayAccountUser /><PayyMenthod /><PayNote />
+      </div>
+  );
+};
 

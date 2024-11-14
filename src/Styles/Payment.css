@@ -3,16 +3,20 @@
   justify-content: center;
 }
 .left {
-  left: 50%;
+  display: flex;
+  float: right;
+  margin-right: 5%;
 }
-.fill-infor,
+
 .order-processing {
-  margin-left: 8%;
+  display: flex;
+  align-items: right;
 }
 .fill-infor > .payment-form {
   margin: 10px 5px;
   padding: 10px;
 }
+/* nhập thông tin khách hàng khi thanh toán */
 input[type="text"] {
   border: 1px solid #0002;
   margin: 4px 0 10px;
@@ -25,51 +29,7 @@ input[type="text"] {
 .order-title {
   display: flex;
 }
-/* hiện add more pizza */
-.dropdown {
-  margin-right: 50rem;
-  border-radius: 10px;
 
-}
-.more:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-#menu {
-  display: none;
-}
-ul {
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.5);
-  width: 200px;
-}
-li {
-  list-style: none;
-  line-height: 30px;
-}
-#dis {
-  display: none;
-}
-#order-detail {
-  display: flex;
-  margin: 0 10px;
-  border: 1px solid rgb(255, 255, 255);
-  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.5);
-  border-radius: 5px;
-  width: 600px;
-  position: relative;
-  margin-bottom: 10px;
-  margin-right: 10px;
-}
-.del-btn {
-  width: 30px;
-  height: 80px;
-  font-size: 20px;
-  border-style: none;
-  background-color: white;
-  position: absolute;
-  left: 560px;
-}
 #img-product1,
 #img-product2,
 #img-product3,
@@ -83,26 +43,42 @@ li {
 #img-product11 {
   position: absolute;
 }
-.title1{
-  margin-left: 55%;
-  font-size: 20px;
+ /* background bao quanh các paymethod */
+ .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Optional: aligns items to the left */
+  position: relative;
 }
+
+.payment-methods {
+  align-items: flex-end;
+  margin-right: 5%; /* Adjust as needed for spacing */
+  width: 600px;
+  padding: 10px;
+  border: 1px solid rgb(255, 255, 255);
+  box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.5);
+  border-radius: 5px;
+  
+}
+
 .methods {
-  /* background bao quanh các paymethod */
   width: 600px; 
   padding: 10px;
   border: 1px solid rgb(255, 255, 255);
   box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.5);
   border-radius: 5px;
-  margin-left: 55%;
+  position: absolute;
+  bottom: 0;
+  right: 0; 
 }
 .infor {
   margin-left: 10px;
 }
+
+/* background tổng của phương thức thanh toán */
 .methods-detail {
   width: 580px;
-  height: auto;
-  display: flex;
   padding: 10px;
   border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
@@ -124,6 +100,7 @@ li {
 #dot {
   display: none;
 }
+
 .box {
   width: 20px;
   background-color: #a45d51;
@@ -229,32 +206,6 @@ input[type="date"] {
   margin-top: 5px;
   margin-right: 80px;
 }
-/* hiển thị adđ more pizza */
 
-/* button add more pizza */
-#menu.hide-menu {
-  display: none;
-}
 
-/* Show the menu when the class is applied */
-#menu.show-menu {
-  display: block;
-  position: absolute; /* Position the dropdown relative to its parent */
-  text-align: center;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-/* Styling for list items */
-#menu ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-#menu ul li {
-  cursor: pointer;
-}
-
-#menu ul li:hover {
-  background-color: #ddd;
-}
