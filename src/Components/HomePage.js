@@ -8,10 +8,13 @@ import ProductDetail from "./ProductDetail";
 export function Header() {
   return (
     <header>
-      <div>
+      <div className="header-left">
         <h1>Pizza Shop</h1>
       </div>
-      <div>
+      <div className="header-right">
+        <form>
+          <input type="search" placeholder="Search..." />
+        </form>
         <Link to="/login">
           <i className="fas fa-user"></i>
         </Link>
