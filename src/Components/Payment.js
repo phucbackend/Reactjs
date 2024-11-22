@@ -1,17 +1,26 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import React from "react";
 import "../Styles/Payment.css";
 import "../Styles/Main.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+
 
 //Chứa các item của giỏ hàng
 export function Cart() {
-  //Để trống
+  return(
+    <div className="name-banner">
+      <h1>Cart</h1>
+    </div>
+  );
 }
 
 //Chứa các thành phần thanh toán
 export function PaymentInfo() {
   return (
     <div>
+     
       <FillUserInfo />
       <FillPaymentMethod />
       <FillNote />
@@ -71,25 +80,47 @@ export function FillUserInfo() {
 
 //Thành phần điền phương thức thanh toán
 export function FillPaymentMethod() {
+const [selectedMethod, setselectedMethod] = useState(null); 
+const handleSelect = (menthod) =>{
+  setselectedMethod (menthod); 
+}
   return (
+   
     <div className="payment-methods">
       <h1 className="title-name">PAYMENT METHODS</h1>
+            
       <div className="methods">
-        <div className="methods-detail" onclick="cash()">
-          <p>Cash</p>
+
+        <div className= {`methods-detail ${selectedMethod === "Cash" ? "selected": ""}`} 
+          onClick= {() =>handleSelect("Cash")}>
+        <i class="fa-solid fa-money-bill"></i>
+        <p>Cash</p>
         </div>
-        <div className="methods-detail" onclick="pay()">
+
+        <div className=  {`methods-detail ${selectedMethod === "PayPal" ? "selected": ""}`} 
+            onClick= {() =>handleSelect("PayPal")}>
+        <i class="fa-brands fa-cc-paypal"></i>
           <p>PayPal</p>
         </div>
-        <div className="methods-detail" onclick="mas()">
+
+        <div className={`methods-detail ${selectedMethod === "master-cash" ? "selected": ""}`} 
+        onClick= {() =>handleSelect("master-cash")}>
+        <i class="fa-brands fa-cc-mastercard"></i>
           <p>Master Card</p>
         </div>
-        <div className="methods-detail" onclick="visa()">
+
+        <div className=  {`methods-detail ${selectedMethod === "visa" ? "selected": ""}`} 
+        onClick= {() =>handleSelect("visa")}>
+        <i class="fa-brands fa-cc-visa"></i>
           <p>Visa Card</p>
         </div>
-      </div>
+
+      </div> 
     </div>
-  );
+    
+
+  );  
+     
 }
 
 //Thành phần tùy chọn ghi chú
@@ -98,8 +129,14 @@ export function FillNote() {
     <div className="note-container">
       <h1 className="title-name">COMMENT</h1>
       <div className="d">
+   
         <form className="payment-form">
+        
           <div className="note">
+          <i class="fa-solid fa-note-sticky" 
+          style={{paddingLeft: "10px", 
+                  paddingRight: "10px",
+                  fontSize: "22px"}}></i>
             <input
               type="text"
               id="note"
@@ -107,7 +144,7 @@ export function FillNote() {
               placeholder="Do you want to note anything to the restaurant?"
               style={{
                 backgroundColor: "white",
-                width: "600px",
+                width: "550px",
                 height: "35px",
               }}
             />
@@ -123,7 +160,8 @@ export function FillNote() {
 export function ConfirmPayment() {
   return (
     <div className="confirm-payment">
-      <button className="btn-confirm">PAY</button>
+      
+     <Link to="/successpage"><button className="btn-confirm">PAY</button></Link> 
       <Link to="/" style={{ textDecoration: "underline" }}>
         Add more ? ...
       </Link>

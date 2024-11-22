@@ -49,9 +49,7 @@
     border: 1px solid rgb(255, 255, 255);
     box-shadow: 0px 0px 20px rgba(196, 196, 196, 0.5);
     border-radius: 5px;
-    
-  }
-
+    }
   .note-container{
     width: 600px;
     margin-top: 20px;
@@ -94,13 +92,34 @@
   }
   .methods-detail {
     width: 580px;
+    display: flex;
+    align-items: center;
     padding: 10px;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 5px;
     background-color: #f6f6f6;
+    transition: background-color 0.1s;
+  }
+  .methods-detail:hover{
+    background-color: #fffb0c;
+  }
+
+  .methods-detail.selected{
+    background-color: #FFFF33 ;
+    border-color: #FFFF00 ;
+  }
+
+  .methods-detail i{
+    margin: 0 ;
+    font-size: 24px;
+  }
+  .methods-detail p {
+    margin: 0;
+    margin-left: 20px;
+    font-size: 18px;
   }
   /* Styling for the title sections */
-  .title, .title-name {
+  .title, .title-name .name-banner {
     font-size: 24px;
     color: #333;
     margin-bottom: 20px;
@@ -114,17 +133,14 @@
   
   .payment-methods .methods-detail {
     padding: 10px;
-    background-color: #ececec;
+   
     margin-bottom: 10px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s;
   }
   
-  .payment-methods .methods-detail:hover {
-    background-color: #d4d4d4;
-  }
-  
+
   /* Styling for the note section */
   .invoice .note input[type="text"] {
     background-color: #ffffff;
@@ -146,4 +162,3 @@
       margin-bottom: 20px;
     }
   }
-  

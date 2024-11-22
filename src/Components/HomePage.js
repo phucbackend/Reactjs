@@ -5,7 +5,7 @@ import Pizza from "../Data/Pizza";
 import { useState } from "react";
 import ProductDetail from "./ProductDetail";
 
-export function Header() {
+export function Header({ setSearchQuery }) {
   return (
     <header>
       <div className="header-left">
@@ -13,7 +13,11 @@ export function Header() {
       </div>
       <div className="header-right">
         <form>
-          <input type="search" placeholder="Search..." />
+          <input
+            type="search"
+            placeholder="Search..."
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </form>
         <Link to="/login">
           <i className="fas fa-user"></i>
@@ -25,7 +29,7 @@ export function Header() {
     </header>
   );
 }
-export function Body() {
+export function Body({ searchQuery }) {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedPizza, setSelectedPizza] = useState(null);
   const [quantity, setQuantity] = useState(1);
@@ -43,12 +47,16 @@ export function Body() {
     setSelectedPizza(null);
   };
 
+  const filteredPizza = Pizza.filter((pizza) =>
+    pizza.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <main>
-      <div>
-        {Pizza.map((pizza, index) => (
+      <div className={searchQuery ? "search-results" : ""}>
+        {filteredPizza.map((pizza) => (
           <div
-            key={index}
+            key={pizza.id}
             className="product-card"
             onClick={() => openModal(pizza)}
           >
@@ -78,10 +86,11 @@ export function Body() {
 }
 
 export default function HomePage() {
+  const [searchQuery, setSearchQuery] = useState("");
   return (
     <div>
-      <Header />
-      <Body />
+      <Header setSearchQuery={setSearchQuery} />
+      <Body searchQuery={searchQuery} />
     </div>
   );
 }

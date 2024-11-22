@@ -1,312 +1,328 @@
-  /* Reset CSS */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-  }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+}
 
-  /* Header styling */
-  header {
+/* Header styling */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #222;
+  color: white;
+  padding: 20px;
+}
+
+.header-right{
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #222;
-    color: white;
-    padding: 20px;
-  }
+    gap: 1em;
+}
 
-  .header-right{
-      display: flex;
-      align-items: center;
-      gap: 1em;
-  }
+header h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+}
 
-  header h1 {
-    font-size: 24px;
-    text-transform: uppercase;
-  }
+header div:last-child a {
+  color: white;
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
 
-  header div:last-child a {
-    color: white;
-    margin-left: 15px;
-    font-size: 20px;
-    cursor: pointer;
-  }
+header div:last-child a:hover {
+  color: #ffcc00;
+}
 
-  header div:last-child a:hover {
-    color: #ffcc00;
-  }
-
-  /* Main section */
-  main {
-    background-color: #fff;
-    padding: 20px 0 20px; /* Thêm padding-bottom cho khoảng cách với footer */
-    height: calc(100vh - 40px); /* Giữ chiều cao chính xác */
-    overflow-y: auto;
-  }
+/* Main section */
+main {
+  background-color: #fff;
+  padding: 20px 0 20px; /* Thêm padding-bottom cho khoảng cách với footer */
+  height: calc(100vh - 40px); /* Giữ chiều cao chính xác */
+  overflow-y: auto;
+}
 
 
 
-  main > div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; 
-    align-content: center;
-    align-items: center;
-    gap: 20px;
-  }
+main > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  align-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
- 
+
+main div > div {
+  text-align: center;
+  background-color: #fafafa;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+   width: calc(25% - 50px); 
+   box-sizing: border-box;
+  transition: transform 0.3s ease; 
+}
+
+main div > div:hover {
+  transform: translateY(-10px);
+}
+
+main img {
+  width: 100%; /* Adjust to the div's width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover;
+}
+
+main h3 {
+  margin: 10px 0;
+  font-size: 18px;
+  color: #222;
+}
+
+main p {
+  color: #555;
+  font-size: 16px;
+}
+
+
+/* Responsive design */
+@media (max-width: 1200px) {
   main div > div {
-    text-align: center;
-    background-color: #fafafa;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-     width: calc(25% - 50px); 
-     box-sizing: border-box;
-    transition: transform 0.3s ease; 
+    width: calc(33.33% - 40px); /* 3 columns on medium screens */
+  }
+}
+
+@media (max-width: 992px) {
+  main div > div {
+    width: calc(50% - 40px); /* 2 columns on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  main div {
+    justify-content: center; /* Center items for small screens */
   }
 
-  main div > div:hover {
-    transform: translateY(-10px);
+  main div > div {
+    width: calc(50% - 40px); /* Keep 2 columns */
+  }
+}
+
+@media (max-width: 576px) {
+  main div > div {
+    width: calc(100% - 40px); /* 1 column on very small screens */
   }
 
-  main img {
-    width: 100%; /* Adjust to the div's width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover;
+  footer {
+    font-size: 14px; /* Giảm kích thước font cho các màn hình nhỏ */
   }
+}
 
-  main h3 {
-    margin: 10px 0;
-    font-size: 18px;
-    color: #222;
-  }
+.product-container {
+  position: relative;
+  width: 150px; /* Set a fixed width for the container */
+  height: 150px; /* Set a fixed height for the container */
+}
 
-  main p {
-    color: #555;
-    font-size: 16px;
-  }
+.product-card {
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển động */
+  cursor: pointer; /* Thay đổi hình dạng con trỏ */
+}
 
+.product-card img {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.3s ease, filter 0.3s ease; /* Thêm hiệu ứng chuyển động cho ảnh */
+}
 
-  /* Responsive design */
-  @media (max-width: 1200px) {
-    main div > div {
-      width: calc(33.33% - 40px); /* 3 columns on medium screens */
-    }
-  }
+.product-card:hover img {
+  
+  transform: scale(1.1); /* Phóng to ảnh khi hover */
+  filter: brightness(1.1); /* Tăng độ sáng khi hover */
+}
 
-  @media (max-width: 992px) {
-    main div > div {
-      width: calc(50% - 40px); /* 2 columns on smaller screens */
-    }
-  }
-
-  @media (max-width: 768px) {
-    main div {
-      justify-content: center; /* Center items for small screens */
-    }
-
-    main div > div {
-      width: calc(50% - 40px); /* Keep 2 columns */
-    }
-  }
-
-  @media (max-width: 576px) {
-    main div > div {
-      width: calc(100% - 40px); /* 1 column on very small screens */
-    }
-
-    footer {
-      font-size: 14px; /* Giảm kích thước font cho các màn hình nhỏ */
-    }
-  }
-
-  .product-container {
-    position: relative;
-    width: 150px; /* Set a fixed width for the container */
-    height: 150px; /* Set a fixed height for the container */
-  }
-
-  .product-card {
-    position: relative;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển động */
-    cursor: pointer; /* Thay đổi hình dạng con trỏ */
-  }
-
-  .product-card img {
-    width: 150px;
-    height: 150px;
-    transition: transform 0.3s ease, filter 0.3s ease; /* Thêm hiệu ứng chuyển động cho ảnh */
-  }
-
-  .product-card:hover img {
-    transform: scale(1.1); /* Phóng to ảnh khi hover */
-    filter: brightness(1.1); /* Tăng độ sáng khi hover */
-  }
-
-  .product-card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Đổ bóng khi hover */
-  }
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Đổ bóng khi hover */
+}
 
 
-  /* Modal overlay styles */
-  .ReactModal__Overlay {
-    position: fixed; /* Ensure overlay covers the whole screen */
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.75);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it appears on top of other elements */
-  }
+/* Modal overlay styles */
+.ReactModal__Overlay {
+  position: fixed; /* Ensure overlay covers the whole screen */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears on top of other elements */
+}
 
-  /* Modal content styles */
-  .ReactModal__Content {
-    position: relative;
-    background: #fff; /* Change the background to white */
-    padding: 20px; /* Padding for inner content */
-    width: 90%; /* Responsive width */
-    max-width: 500px; /* Maximum width */
-    height: auto; /* Allow auto height */
-    max-height: 80vh; /* Restrict height to 80% of the viewport */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    text-align: center; /* Center text */
-    outline: none; /* Remove default outline */
-    margin: auto; /* Center the modal */
-    overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
-  }
+/* Modal content styles */
+.ReactModal__Content {
+  position: relative;
+  background: #fff; /* Change the background to white */
+  padding: 20px; /* Padding for inner content */
+  width: 90%; /* Responsive width */
+  max-width: 500px; /* Maximum width */
+  height: auto; /* Allow auto height */
+  max-height: 80vh; /* Restrict height to 80% of the viewport */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  text-align: center; /* Center text */
+  outline: none; /* Remove default outline */
+  margin: auto; /* Center the modal */
+  overflow-y: auto; /* Allow vertical scrolling if content exceeds height */
+}
 
-  /* Modal title styles */
-  .ReactModal__Content h2 {
-    margin-bottom: 15px; /* Space below title */
-    color: #333; /* Dark color for title */
-    font-size: 24px; /* Larger font size for title */
-  }
+/* Modal title styles */
+.ReactModal__Content h2 {
+  margin-bottom: 15px; /* Space below title */
+  color: #333; /* Dark color for title */
+  font-size: 24px; /* Larger font size for title */
+}
 
-  /* Modal image styles */
-  .ReactModal__Content img {
-    border-radius: 8px; /* Round image corners */
-  }
+/* Modal image styles */
+.ReactModal__Content img {
+  border-radius: 8px; /* Round image corners */
+}
 
-  /* Button styles */
-  .ReactModal__Content button {
-    background-color: #e7946d; /* Primary button color */
-    color: white; /* Text color */
-    border: none; /* Remove border */
-    padding: 12px 20px; /* Button padding */
-    margin-top: 15px; /* Space above button */
-    cursor: pointer; /* Pointer cursor */
-    border-radius: 5px; /* Rounded corners for buttons */
-    transition: background-color 0.3s ease; /* Transition for hover effect */
-  }
+/* Button styles */
+.ReactModal__Content button {
+  background-color: #e7946d; /* Primary button color */
+  color: white; /* Text color */
+  border: none; /* Remove border */
+  padding: 12px 20px; /* Button padding */
+  margin-top: 15px; /* Space above button */
+  cursor: pointer; /* Pointer cursor */
+  border-radius: 5px; /* Rounded corners for buttons */
+  transition: background-color 0.3s ease; /* Transition for hover effect */
+}
 
 
-  /* Button hover effect */
-  .ReactModal__Content button:hover {
-    background-color: #e7946d; /* Darker color on hover */
-  }
+/* Button hover effect */
+.ReactModal__Content button:hover {
+  background-color: #e7946d; /* Darker color on hover */
+}
 
-  /* Close button styles */
-  .ReactModal__Content .close-button {
-    position: absolute; /* Positioning for close button */
-    top: 10px; /* Positioning from top */
-    right: 10px; /* Positioning from right */
-    background: transparent; /* Transparent background */
-    border: none; /* No border */
-    cursor: pointer; /* Pointer cursor */
-    font-size: 20px; /* Font size for icon */
-    color: #999; /* Light color for close icon */
-  }
+/* Close button styles */
+.ReactModal__Content .close-button {
+  position: absolute; /* Positioning for close button */
+  top: 10px; /* Positioning from top */
+  right: 10px; /* Positioning from right */
+  background: transparent; /* Transparent background */
+  border: none; /* No border */
+  cursor: pointer; /* Pointer cursor */
+  font-size: 20px; /* Font size for icon */
+  color: #999; /* Light color for close icon */
+}
 
-  .ReactModal__Content .close-button:hover {
-    color: #ff0000; /* Change color on hover */
-  }
+.ReactModal__Content .close-button:hover {
+  color: #ff0000; /* Change color on hover */
+}
 
-  .size-selection {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center align items vertically */
-    gap: 10px; /* Add space between the label and buttons */
-    margin-bottom: 10px; /* Add space below the selection */
-    justify-content: space-evenly;
-  }
+.size-selection {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Add space between the label and buttons 
+  
+  margin-bottom: 10px; /* Add space below the selection */
+  justify-content: space-evenly;
+}
 
-  .size-selection span {
-    margin-top: 10px;
-    font-weight: bold; /* Make the label bold */
-  }
+.size-selection span {
+  margin-top: 10px;
+  font-weight: bold; /* Make the label bold */
+}
 
+.footer {
+  margin-top: 30px;
+  background: #000;
+  padding: 30px 0;
+  font-family: 'Play', sans-serif;
+  text-align: center; /* Center the text inside the footer */
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+.footer .row {
+  background-color: black; /* Set background to black */
+  width: 100%; /* Full width to allow centering */
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center items in this row */
+  margin: 1% 0; /* Maintain margin */
+  padding: 0; /* Remove padding for full width visibility */
+  color: white; /* Change text color to white */
+  font-size: 0.8em;
+  border: 1px solid black; /* Add a black border */
+}
+
+.footer .row ul {
+  display: flex; /* Use flexbox for the list */
+  justify-content: center; /* Center the list items */
+  padding: 0; /* Remove padding */
+}
+
+.footer .row ul li {
+  margin: 0 15px; /* Space out list items */
+}
+
+.footer .row a {
+  color: white; /* Change link color to white */
+  text-decoration: none; /* Remove underline from links */
+}
+
+.footer .row a:hover {
+  color: #ffcc00; /* Optional: Change link color on hover */
+}
+
+.footer .row a i {
+  font-size: 2em; /* Icon size */
+  margin: 0 10px; /* Space between icons */
+  color: white; /* Change icon color to white */
+}
+
+@media (max-width: 720px) {
   .footer {
-    margin-top: 30px;
-    background: #000;
-    padding: 30px 0;
-    font-family: 'Play', sans-serif;
-    text-align: center; /* Center the text inside the footer */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack children vertically */
-    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center text on small screens */
+    padding: 5%;
   }
-
-  .footer .row {
-    background-color: black; /* Set background to black */
-    width: 100%; /* Full width to allow centering */
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center items in this row */
-    margin: 1% 0; /* Maintain margin */
-    padding: 0; /* Remove padding for full width visibility */
-    color: white; /* Change text color to white */
-    font-size: 0.8em;
-    border: 1px solid black; /* Add a black border */
-  }
-
-  .footer .row ul {
-    display: flex; /* Use flexbox for the list */
-    justify-content: center; /* Center the list items */
-    padding: 0; /* Remove padding */
-  }
-
   .footer .row ul li {
-    margin: 0 15px; /* Space out list items */
+    display: inline-block; /* Keep items in a line */
+    margin: 10px; /* Space for small screens */
   }
+}
 
-  .footer .row a {
-    color: white; /* Change link color to white */
-    text-decoration: none; /* Remove underline from links */
-  }
+.search-results {
+  display: flex; /* Arrange items horizontally */
+  flex-wrap: wrap; /* Allow items to wrap to multiple lines */
+  justify-content: flex-start; /* Align items to the left */
+  /* Additional styles as needed (e.g., margin, padding) */
+}
 
-  .footer .row a:hover {
-    color: #ffcc00; /* Optional: Change link color on hover */
-  }
+.search-results .product-card {
+  margin: 15px; /* Adjust spacing between cards */
+  text-align: center; /* Center content within cards */
+  /* Additional styles for cards */
+}
 
-  .footer .row a i {
-    font-size: 2em; /* Icon size */
-    margin: 0 10px; /* Space between icons */
-    color: white; /* Change icon color to white */
-  }
-
-  @media (max-width: 720px) {
-    .footer {
-      text-align: center; /* Center text on small screens */
-      padding: 5%;
-    }
-    .footer .row ul li {
-      display: inline-block; /* Keep items in a line */
-      margin: 10px; /* Space for small screens */
-    }
-  }
-
-  
-
-  
+.search-results .product-card img {
+  border-radius: 5px; /* Add subtle rounded corners */
+  /* Additional image styles */
+}
