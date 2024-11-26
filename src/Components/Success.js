@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Styles/Main.css";
+// import "../Styles/Main.css";
 import "../Styles/Success.css";
 
 import { Link } from "react-router-dom";
@@ -37,10 +37,10 @@ export default function SuccessPage() {
     </div>
    
 
-      <div className="button">
-        <button onClick={openModal}>Tracking your order</button>
+      <div className="button-control">
+        <button className ="button_success" onClick={openModal}>Tracking your order</button>
         <Link to="/">
-          <button>Keep Ordering</button>
+          <button className="button_success">Keep Ordering</button>
         </Link>
       </div>
 

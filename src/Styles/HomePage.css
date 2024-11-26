@@ -326,3 +326,18 @@ main p {
   border-radius: 5px; /* Add subtle rounded corners */
   /* Additional image styles */
 }
+
+.ReactModal__Content button.add-to-cart-button{
+  margin-top: 20px;
+  width: 75%;
+  padding: 10px;
+  background-color: #e7946d;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
