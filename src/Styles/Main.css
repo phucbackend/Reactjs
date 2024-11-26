@@ -16,7 +16,7 @@ a {
 }
 .btn1:hover {
   background-color: #a45d51;
-  color: white;
+  color: rgb(233, 15, 15);
   cursor: pointer;
 }
 .btn1 {

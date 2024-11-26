@@ -1,20 +1,85 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import React from "react";
+import React, {useEffect} from "react";
 import "../Styles/Payment.css";
 import "../Styles/Main.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+const Cart = () => {
+  const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
+    setCart(storedCart);
+  }, []);
 
-//Chứa các item của giỏ hàng
-export function Cart() {
-  return(
-    <div className="name-banner">
-      <h1>Cart</h1>
+  const handleQuantityChange = (id, action) => {
+    const updatedCart = cart.map(item => {
+      if (item.id === id) {
+        const newQuantity = action === "increase" ? item.quantity + 1 : item.quantity - 1;
+        if (newQuantity > 0) {
+          return { ...item, quantity: newQuantity, totalPrice: newQuantity * item.price };
+        }
+      }
+      return item;
+    });
+
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  const handleRemoveItem = (id) => {
+    const updatedCart = cart.filter(item => item.id !== id);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
+  return (
+    <div className="cart-table">
+      <h2>Your Cart</h2>
+      {cart.length === 0 ? (
+        <p>Cart is empty</p>
+      ) : (
+        <table className="cart-item-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {cart.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>${item.price}</td>
+                <td>
+                  <button className="quantity-btn" onClick={() => handleQuantityChange(item.id, "decrease")}>
+                    -
+                  </button>
+                  {item.quantity}
+                  <button className="quantity-btn" onClick={() => handleQuantityChange(item.id, "increase")}>
+                    +
+                  </button>
+                </td>
+                <td>${item.totalPrice.toFixed(2)}</td>
+                <td>
+                  <button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
-}
+};
 
 //Chứa các thành phần thanh toán
 export function PaymentInfo() {

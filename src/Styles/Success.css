@@ -21,7 +21,7 @@ img {
   text-align: center;
 }
 
-.button {
+.button-control {
   display: flex;
   flex-direction: row;
   justify-content: center; 
@@ -29,7 +29,11 @@ img {
   margin-top: 10px;
 }
 
+<<<<<<< HEAD
 .button_success {
+=======
+.button_success{
+>>>>>>> f42f40418e349687f09d70796bee78f95b2abf59
   width: 200px;
   height: 50px;
   border: 1px solid #a45d51;
