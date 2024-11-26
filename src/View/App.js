@@ -4,6 +4,7 @@ import HomePage from "../Components/HomePage";
 import SignupPage from "../Components/Signup";
 import Payments from "../Components/Payment";
 import SuccessPage from "../Components/Success";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/signuppage" element={<SignupPage />} />
           <Route path="/payments" element={<Payments />}></Route>
           <Route path="/successpage" element={<SuccessPage />}></Route>
+          
         </Routes>
       </Router>
     </div>

@@ -2,11 +2,22 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../Styles/HomePage.css";
 import { Link } from "react-router-dom";
 import Pizza from "../Data/Pizza";
+import OrderBill from "./Bill";
 import { useState } from "react";
 import ProductDetail from "./ProductDetail";
 
 export function Header({ setSearchQuery }) {
+  const [modalIsOpen, setmodalIsOpen] = useState(false); 
+
+  const openModal = () => {
+    setmodalIsOpen(true); 
+  };
+
+  const closeModal = () => {
+    setmodalIsOpen(false); 
+  }; 
   return (
+    
     <header>
       <div className="header-left">
         <h1>Pizza Shop</h1>
@@ -25,6 +36,15 @@ export function Header({ setSearchQuery }) {
         <Link to="/payments">
           <i className="fas fa-shopping-cart"></i>
         </Link>
+        <div onClick={openModal}>
+        <i class="fa-solid fa-truck-fast"></i>
+        </div>
+
+        <OrderBill 
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}>
+        </OrderBill>
+      
       </div>
     </header>
   );
