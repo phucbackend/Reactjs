@@ -12,7 +12,11 @@ export function ProductDetail({ pizza }) {
   return (
     <div>
       <h2>{pizza.name}</h2>
-      <img src={pizza.img} alt={pizza.name} style={{ width: "200px", height: "200px" }} />
+      <img
+        src={pizza.img}
+        alt={pizza.name}
+        style={{ width: "200px", height: "200px" }}
+      />
       <p style={{ fontWeight: "bold" }}>Price: {pizza.price.Small}</p>
       <p>{pizza.description}</p>
       <div className="size-selection">
@@ -64,7 +68,9 @@ export function QuantityControls({ quantity, setQuantity }) {
 }
 
 export function AddToCartButton() {
-  return <button style={{ marginTop: "20px", width: "50%" }}>Add to Cart</button>;
+  return (
+    <button style={{ marginTop: "20px", width: "50%" }}>Add to Cart</button>
+  );
 }
 
 export default function PizzaModal({
@@ -89,9 +95,11 @@ export default function PizzaModal({
     setPrice(parseFloat(selectedPizza.price[size].slice(1)));
   };
 
+  let counter = parseInt(localStorage.getItem("counter") || "1");
   const handleAddToCart = () => {
     const cartItem = {
-      id: selectedPizza.id,
+      // tạo id tăng dần , bắt đầu từ 1
+      id: counter,
       name: selectedPizza.name,
       size: selectedSize,
       price: price,
@@ -103,17 +111,27 @@ export default function PizzaModal({
     const updatedCart = [...existingCart, cartItem];
     localStorage.setItem("cart", JSON.stringify(updatedCart));
 
+    //
+    localStorage.setItem("counter", (counter + 1).toString());
     alert("Added to cart successfully!");
     onRequestClose(); // Đóng modal sau khi thêm
   };
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onRequestClose} contentLabel="Pizza Details">
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
+      contentLabel="Pizza Details"
+    >
       {selectedPizza && (
         <>
           <div>
             <h2>{selectedPizza.name}</h2>
-            <img src={selectedPizza.img} alt={selectedPizza.name} style={{ width: "200px", height: "200px" }} />
+            <img
+              src={selectedPizza.img}
+              alt={selectedPizza.name}
+              style={{ width: "200px", height: "200px" }}
+            />
             <p style={{ fontWeight: "bold" }}>Price: ${price.toFixed(2)}</p>
             <p>{selectedPizza.description}</p>
             <div className="size-selection">
@@ -122,7 +140,8 @@ export default function PizzaModal({
                   key={size}
                   onClick={() => handleSizeChange(size)}
                   style={{
-                    backgroundColor: selectedSize === size ? "#e7946d" : "#f0f0f0",
+                    backgroundColor:
+                      selectedSize === size ? "#e7946d" : "#f0f0f0",
                     color: selectedSize === size ? "#fff" : "#000",
                   }}
                 >

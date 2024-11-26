@@ -1,5 +1,5 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import "../Styles/Payment.css";
 import "../Styles/Main.css";
 import { Link } from "react-router-dom";
@@ -14,14 +14,24 @@ const Cart = () => {
   }, []);
 
   const handleQuantityChange = (id, action) => {
-    const updatedCart = cart.map(item => {
+    const updatedCart = cart.map((item) => {
       if (item.id === id) {
-        const newQuantity = action === "increase" ? item.quantity + 1 : item.quantity - 1;
-        if (newQuantity > 0) {
-          return { ...item, quantity: newQuantity, totalPrice: newQuantity * item.price };
+        const newQuantity =
+          action === "increase" ? item.quantity + 1 : item.quantity - 1;
+
+        // Đảm bảo số lượng không âm
+        if (newQuantity >= 0) {
+          return {
+            ...item,
+            quantity: newQuantity,
+            totalPrice: newQuantity * item.price,
+          };
+        } else {
+          return item; // Giữ nguyên nếu số lượng giảm xuống dưới 0
         }
+      } else {
+        return item; // Giữ nguyên các sản phẩm khác
       }
-      return item;
     });
 
     setCart(updatedCart);
@@ -29,9 +39,29 @@ const Cart = () => {
   };
 
   const handleRemoveItem = (id) => {
-    const updatedCart = cart.filter(item => item.id !== id);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+    // Lấy danh sách giỏ hàng từ state
+    const updatedCart = cart.filter((item) => item.id !== id);
+
+    // Tái lập số thứ tự cho giỏ hàng
+    const reindexedCart = updatedCart.map((item, index) => ({
+      ...item,
+      id: index + 1, // Sắp xếp lại ID sản phẩm bắt đầu từ 1
+    }));
+
+    // Lấy giá trị counter từ localStorage
+    let currentCounter = parseInt(localStorage.getItem("counter"), 10);
+
+    // Giảm giá trị counter đi 1
+    currentCounter = currentCounter > 0 ? currentCounter - 1 : 0;
+
+    // Lưu giá trị counter mới vào localStorage
+    localStorage.setItem("counter", currentCounter);
+
+    // Cập nhật state giỏ hàng
+    setCart(reindexedCart);
+
+    // Lưu giỏ hàng mới vào localStorage
+    localStorage.setItem("cart", JSON.stringify(reindexedCart));
   };
 
   return (
@@ -56,19 +86,29 @@ const Cart = () => {
               <tr key={item.id}>
                 <td>{item.id}</td>
                 <td>{item.name}</td>
-                <td>${item.price}</td>
+                <td>${item.price.toFixed(2)}</td>
                 <td>
-                  <button className="quantity-btn" onClick={() => handleQuantityChange(item.id, "decrease")}>
+                  <button
+                    className="quantity-btn"
+                    onClick={() => handleQuantityChange(item.id, "decrease")}
+                    disabled={item.quantity === 1} // Disable decrease button if quantity is 1
+                  >
                     -
                   </button>
                   {item.quantity}
-                  <button className="quantity-btn" onClick={() => handleQuantityChange(item.id, "increase")}>
+                  <button
+                    className="quantity-btn"
+                    onClick={() => handleQuantityChange(item.id, "increase")}
+                  >
                     +
                   </button>
                 </td>
-                <td>${item.totalPrice.toFixed(2)}</td>
+                <td>${(item.quantity * item.price).toFixed(2)}</td>
                 <td>
-                  <button className="remove-btn" onClick={() => handleRemoveItem(item.id)}>
+                  <button
+                    className="remove-btn"
+                    onClick={() => handleRemoveItem(item.id)}
+                  >
                     Remove
                   </button>
                 </td>
@@ -85,7 +125,6 @@ const Cart = () => {
 export function PaymentInfo() {
   return (
     <div>
-     
       <FillUserInfo />
       <FillPaymentMethod />
       <FillNote />
@@ -145,47 +184,57 @@ export function FillUserInfo() {
 
 //Thành phần điền phương thức thanh toán
 export function FillPaymentMethod() {
-const [selectedMethod, setselectedMethod] = useState(null); 
-const handleSelect = (menthod) =>{
-  setselectedMethod (menthod); 
-}
+  const [selectedMethod, setselectedMethod] = useState(null);
+  const handleSelect = (menthod) => {
+    setselectedMethod(menthod);
+  };
   return (
-   
     <div className="payment-methods">
       <h1 className="title-name">PAYMENT METHODS</h1>
-            
-      <div className="methods">
 
-        <div className= {`methods-detail ${selectedMethod === "Cash" ? "selected": ""}`} 
-          onClick= {() =>handleSelect("Cash")}>
-        <i class="fa-solid fa-money-bill"></i>
-        <p>Cash</p>
+      <div className="methods">
+        <div
+          className={`methods-detail ${
+            selectedMethod === "Cash" ? "selected" : ""
+          }`}
+          onClick={() => handleSelect("Cash")}
+        >
+          <i class="fa-solid fa-money-bill"></i>
+          <p>Cash</p>
         </div>
 
-        <div className=  {`methods-detail ${selectedMethod === "PayPal" ? "selected": ""}`} 
-            onClick= {() =>handleSelect("PayPal")}>
-        <i class="fa-brands fa-cc-paypal"></i>
+        <div
+          className={`methods-detail ${
+            selectedMethod === "PayPal" ? "selected" : ""
+          }`}
+          onClick={() => handleSelect("PayPal")}
+        >
+          <i class="fa-brands fa-cc-paypal"></i>
           <p>PayPal</p>
         </div>
 
-        <div className={`methods-detail ${selectedMethod === "master-cash" ? "selected": ""}`} 
-        onClick= {() =>handleSelect("master-cash")}>
-        <i class="fa-brands fa-cc-mastercard"></i>
+        <div
+          className={`methods-detail ${
+            selectedMethod === "master-cash" ? "selected" : ""
+          }`}
+          onClick={() => handleSelect("master-cash")}
+        >
+          <i class="fa-brands fa-cc-mastercard"></i>
           <p>Master Card</p>
         </div>
 
-        <div className=  {`methods-detail ${selectedMethod === "visa" ? "selected": ""}`} 
-        onClick= {() =>handleSelect("visa")}>
-        <i class="fa-brands fa-cc-visa"></i>
+        <div
+          className={`methods-detail ${
+            selectedMethod === "visa" ? "selected" : ""
+          }`}
+          onClick={() => handleSelect("visa")}
+        >
+          <i class="fa-brands fa-cc-visa"></i>
           <p>Visa Card</p>
         </div>
-
-      </div> 
+      </div>
     </div>
-    
-
-  );  
-     
+  );
 }
 
 //Thành phần tùy chọn ghi chú
@@ -194,14 +243,16 @@ export function FillNote() {
     <div className="note-container">
       <h1 className="title-name">COMMENT</h1>
       <div className="d">
-   
         <form className="payment-form">
-        
           <div className="note">
-          <i class="fa-solid fa-note-sticky" 
-          style={{paddingLeft: "10px", 
-                  paddingRight: "10px",
-                  fontSize: "22px"}}></i>
+            <i
+              class="fa-solid fa-note-sticky"
+              style={{
+                paddingLeft: "10px",
+                paddingRight: "10px",
+                fontSize: "22px",
+              }}
+            ></i>
             <input
               type="text"
               id="note"
@@ -225,8 +276,9 @@ export function FillNote() {
 export function ConfirmPayment() {
   return (
     <div className="confirm-payment">
-      
-     <Link to="/successpage"><button className="btn-confirm">PAY</button></Link> 
+      <Link to="/successpage">
+        <button className="btn-confirm">PAY</button>
+      </Link>
       <Link to="/" style={{ textDecoration: "underline" }}>
         Add more ? ...
       </Link>
