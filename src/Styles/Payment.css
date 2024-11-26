@@ -101,12 +101,14 @@
     transition: background-color 0.1s;
   }
   .methods-detail:hover{
-    background-color: #fffb0c;
+    background-color: #ff4d4d;
+    color: white;
   }
 
   .methods-detail.selected{
-    background-color: #FFFF33 ;
-    border-color: #FFFF00 ;
+    background-color: #ff4d4d ;
+    color: white;
+    border-color: #a45d51;
   }
 
   .methods-detail i{

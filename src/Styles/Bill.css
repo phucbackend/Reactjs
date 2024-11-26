@@ -1,103 +1,67 @@
-/* Modal Overlay */
-.modal-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Modal Content */
+/* Modal container styling */
 .modal-content {
     background-color: #fff;
-    border-radius: 8px;
-    max-width: 400px;
-    width: 100%;
-    height: 100%;
     padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Order Container */
-.order-container {
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-/* Header Section */
-.header {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-}
-
-/* Order Details Section */
-.order-details {
-    margin-bottom: 20px;
+    border-radius: 10px;
+    width: 500px;
+    margin: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+  
+  /* Modal overlay styling */
+  .modal-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.product-info {
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Header styling */
+  .header {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
-    padding-left: 20px; 
-}
-
-.product-title {
-   
-    font-weight: bold;
-    font-size: 1em;
-}
-
-.product-desc {
-    padding-left: 5px; 
-    font-size: 0.9em;
-    color: #666;
-}
-
-.price-info {
-    font-size: 0.9em;
-    text-align: left;
-    padding-left: 20px;
-}
-
-/* Total Section */
-.total-section {
-    font-size: 1em;
-    margin-top: 10px;
-    padding-left: 20px; /* Matches the indent with product-info */
-}
-
-.total-text,
-.total-price {
-    display: inline-block;
-    width: 100%; /* Ensures alignment */
-}
-
-.total-text {
-    color: #666;
-    font-weight: normal;
-    margin-bottom: 5px;
-}
-
-.total-price {
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .store-name {
+    font-size: 24px;
     font-weight: bold;
     color: #333;
-}
-
-/* Utility Classes */
-.text-center {
+  }
+  
+  /* Order details styling */
+  .order-details {
+    margin-bottom: 20px;
+  }
+  
+  .product-info {
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  
+  .product-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .product-desc {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Total section styling */
+  .total-section {
+    margin-top: 20px;
     text-align: center;
-}
-
-.text-right {
-    text-align: right;
-}
+  }
+  
+  .total-text {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
