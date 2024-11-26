@@ -123,18 +123,39 @@ const Cart = () => {
 
 //Chứa các thành phần thanh toán
 export function PaymentInfo() {
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
+  const isFormValid = () => {
+    // Check if all required fields are filled and a payment method is selected
+    return name && phoneNumber && address;
+  };
   return (
     <div>
-      <FillUserInfo />
+      <FillUserInfo
+        name={name}
+        setName={setName}
+        phoneNumber={phoneNumber}
+        setPhoneNumber={setPhoneNumber}
+        address={address}
+        setAddress={setAddress}
+      />
       <FillPaymentMethod />
       <FillNote />
-      <ConfirmPayment />
+      <ConfirmPayment isFormValid={isFormValid} />
     </div>
   );
 }
 
 //Thành phần điền thông tin người dùng
-export function FillUserInfo() {
+export function FillUserInfo({
+  name,
+  setName,
+  phoneNumber,
+  setPhoneNumber,
+  address,
+  setAddress,
+}) {
   return (
     <div className="user-info">
       <div className="fill-infor">
@@ -143,8 +164,10 @@ export function FillUserInfo() {
           <input
             type="text"
             id="name"
+            value={name}
             name="name"
             placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
             style={{
               backgroundColor: "#d2cdcd53",
               width: "600px",
@@ -153,10 +176,13 @@ export function FillUserInfo() {
           />
           <br />
           <input
-            type="text"
+            type="tel"
+            pattern="^[0-9]{10}$"
             id="phonenumber"
             name="phonenumber"
+            value={phoneNumber}
             placeholder="Phone Number"
+            onChange={(e) => setPhoneNumber(e.target.value)}
             style={{
               backgroundColor: "#d2cdcd53",
               width: "600px",
@@ -167,8 +193,10 @@ export function FillUserInfo() {
           <input
             type="text"
             name="address"
+            value={address}
             id="address"
             placeholder="Address"
+            onChange={(e) => setAddress(e.target.value)}
             style={{
               backgroundColor: "#d2cdcd53",
               width: "600px",
@@ -184,10 +212,12 @@ export function FillUserInfo() {
 
 //Thành phần điền phương thức thanh toán
 export function FillPaymentMethod() {
-  const [selectedMethod, setselectedMethod] = useState(null);
-  const handleSelect = (menthod) => {
-    setselectedMethod(menthod);
+  const [selectedMethod, setselectedMethod] = useState("Cash"); // Mặc định là "Cash"
+
+  const handleSelect = (method) => {
+    setselectedMethod(method);
   };
+
   return (
     <div className="payment-methods">
       <h1 className="title-name">PAYMENT METHODS</h1>
@@ -273,11 +303,21 @@ export function FillNote() {
 }
 
 //Thành phần xác nhận thanh toán - mua hàng
-export function ConfirmPayment() {
+export function ConfirmPayment({ isFormValid }) {
   return (
     <div className="confirm-payment">
       <Link to="/successpage">
-        <button className="btn-confirm">PAY</button>
+        <button
+          className="btn-confirm"
+          onClick={(e) => {
+            if (!isFormValid()) {
+              e.preventDefault();
+              alert("Vui lòng điền thông tin");
+            }
+          }}
+        >
+          PAY
+        </button>
       </Link>
       <Link to="/" style={{ textDecoration: "underline" }}>
         Add more ? ...
