@@ -38,10 +38,27 @@ header div:last-child a {
   font-size: 20px;
   cursor: pointer;
 }
-
-header div:last-child a:hover {
-  color: #ffcc00;
+/* thêm icon order và chuyển màu cả 3 icon trên header */
+.header-right a, .solid_item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px; /* Khoảng cách giữa các icon */
+  font-size: 20px; /* Đảm bảo kích thước đồng đều */
+  color: #fff; /* Màu sắc mặc định */
+  cursor: pointer;
+  text-decoration: none; /* Loại bỏ underline nếu cần */
+  transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu mượt */
 }
+
+.header-right a:hover, .solid_item:hover {
+  color: #ffcc00; /* Màu khi hover */
+}
+
+.solid_item i {
+  font-size: inherit; /* Đảm bảo kích thước icon phù hợp */
+}
+
 
 /* Main section */
 main {

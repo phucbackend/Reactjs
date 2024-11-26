@@ -36,7 +36,7 @@ export function Header({ setSearchQuery }) {
         <Link to="/payments">
           <i className="fas fa-shopping-cart"></i>
         </Link>
-        <div onClick={openModal}>
+        <div className="solid_item" onClick={openModal}>
         <i class="fa-solid fa-truck-fast"></i>
         </div>
 

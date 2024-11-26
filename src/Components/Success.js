@@ -37,8 +37,13 @@ export default function SuccessPage() {
     </div>
    
 
+<<<<<<< HEAD
+      <div className="button">
+        <button className="button_success" onClick={openModal}>Tracking your order</button>
+=======
       <div className="button-control">
         <button className ="button_success" onClick={openModal}>Tracking your order</button>
+>>>>>>> f42f40418e349687f09d70796bee78f95b2abf59
         <Link to="/">
           <button className="button_success">Keep Ordering</button>
         </Link>
