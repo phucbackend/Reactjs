@@ -29,7 +29,7 @@ img {
   margin-top: 10px;
 }
 
-button {
+.button_success {
   width: 200px;
   height: 50px;
   border: 1px solid #a45d51;
@@ -40,7 +40,7 @@ button {
   border-radius: 5px;
 }
 
-button:hover {
+.button_success:hover {
   background-color: #a45d51;
   color: white;
 }

@@ -162,3 +162,17 @@
       margin-bottom: 20px;
     }
   }
+.btn-confirm{
+  width: 200px;
+  height: 50px;
+  border: 1px solid #a45d51;
+  background-color: white;
+  color: #a45d51;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.btn-confirm:hover{
+  background-color: #a45d51;
+  color: white;
+}
