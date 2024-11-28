@@ -1,67 +1,142 @@
-/* Modal container styling */
+/* Modal content styling */
 .modal-content {
-    background-color: #fff;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  max-height: 80vh;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Modal overlay styling */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Header styling */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.store-name {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Order details styling */
+.order-details {
+  margin-bottom: 20px;
+}
+
+.date-group {
+  margin-bottom: 32px;
+}
+
+.date {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.common-info-inline {
+
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.common-info-inline > div {
+  flex: 1;
+  padding: 0 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+/* Table styling */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.product-table th, 
+.product-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+}
+
+.product-table th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #555;
+}
+
+.product-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.product-table td {
+  color: #333;
+}
+
+.product-info.no-border {
+  border: none;
+}
+
+.total-row {
+  font-weight: bold;
+  background-color: #f8f9fa;
+}
+
+.total-row td {
+  font-size: 16px;
+  color: #222;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 100%;
     padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    margin: auto;
-    max-height: 80vh;
-    overflow-y: auto;
   }
-  
-  /* Modal overlay styling */
-  .modal-overlay {
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+
+  .common-info-inline {
+    flex-direction: column;
   }
-  
-  /* Header styling */
-  .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .store-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Order details styling */
-  .order-details {
-    margin-bottom: 20px;
-  }
-  
-  .product-info {
-    margin-bottom: 15px;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
-  }
-  
-  .product-title {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .product-desc {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  /* Total section styling */
-  .total-section {
-    margin-top: 20px;
+
+  .common-info-inline > div {
+    padding: 8px 0;
     text-align: center;
   }
-  
-  .total-text {
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-  }
-  
+}
+.date-group {
+  border: 1px solid #717070; /* Tạo viền xung quanh từng bill */
+  border-radius: 8px; /* Bo góc viền */
+  margin-bottom: 16px; /* Khoảng cách giữa các bill */
+  padding: 16px; /* Khoảng cách bên trong bill */
+  background-color: #f9f9f9; /* Tùy chọn: Thêm màu nền nhạt */
+}
+
+.date-group .date {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}

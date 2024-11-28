@@ -1,34 +1,37 @@
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "../Styles/Bill.css";
 
-export default function OrderBill({ isOpen, onRequestClose }) {
-  // Mock data for the order with dateTime
-  const orderItems = [
-    {
-      name: "Pizza Margherita",
-      price: 150000,
-      quantity: 2,
-      total: 300000,
-      dateTime: "2024-11-25 12:30:00", // Example date and time
-    },
-    {
-      name: "Pizza Pepperoni",
-      price: 180000,
-      quantity: 1,
-      total: 180000,
-      dateTime: "2024-11-25 12:30:00",
-    },
-    {
-      name: "Pizza Veggie",
-      price: 120000,
-      quantity: 3,
-      total: 360000,
-      dateTime: "2024-11-25 12:30:00",
-    },
-  ];
+// Group bills by date function
+const groupBillsByDate = (bills) => {
+  return bills.reduce((groups, bill) => {
+    const dateTime = new Date(bill.id).toLocaleString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }); // Định dạng đầy đủ ngày, giờ, phút, giây
+    if (!groups[dateTime]) {
+      groups[dateTime] = [];
+    }
+    groups[dateTime].push(bill);
+    return groups;
+  }, {});
+};
 
-  // Calculate total price
-  const totalPrice = orderItems.reduce((sum, item) => sum + item.total, 0);
+export default function OrderBill({ isOpen, onRequestClose }) {
+  const [bills, setBills] = useState([]);
+
+  useEffect(() => {
+    // Correctly parse the data and handle edge cases
+    const storedData = JSON.parse(localStorage.getItem("bill")) || { bill: [] };
+    setBills(storedData.bill);
+  }, []);
+
+  // Group bills by order date
+  const groupedBills = groupBillsByDate(bills);
 
   return (
     <Modal
@@ -40,25 +43,61 @@ export default function OrderBill({ isOpen, onRequestClose }) {
     >
       <div className="order-container">
         <div className="header">
-          <span className="store-name">Order History 01</span>
+          <span className="store-name">Order History</span>
         </div>
         <div className="order-details">
-          {orderItems.map((item, index) => (
-            <div key={index} className="product-info">
-              <p className="product-title">{item.name}</p>
-              <p className="product-desc">
-                Giá: {item.price.toLocaleString()} VND
-              </p>
-              <p className="product-desc">Số lượng: {item.quantity}</p>
-
-              <p className="product-desc">Ngày đặt hàng: {item.dateTime}</p>
-            </div>
-          ))}
-        </div>
-        <div className="total-section">
-          <p className="total-text">
-            Tổng số tiền: {totalPrice.toLocaleString()} VND
-          </p>
+          {Object.keys(groupedBills).length === 0 ? (
+            <div className="empty-message">Không có đơn hàng nào</div>
+          ) : (
+            Object.keys(groupedBills)
+              .sort((a, b) => new Date(b) - new Date(a)) // Sắp xếp giảm dần theo ngày
+              .map((date, index) => {
+                const total = groupedBills[date].reduce(
+                  (sum, bill) => sum + bill.totalPrice,
+                  0
+                );
+                const representativeBill = groupedBills[date][0];
+                return (
+                  <div key={index} className="date-group">
+                    <div className="date">{date}</div>
+                    <div className="common-info-inline">
+                      <div>Name: {representativeBill.username}</div>
+                      <div>Address: {representativeBill.address}</div>
+                    </div>
+                    <table className="product-table">
+                      <thead>
+                        <tr>
+                          <th>Product</th>
+                          <th>Price</th>
+                          <th>Size</th>
+                          <th>Quantity</th>
+                          <th>Total Price</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {groupedBills[date].map((bill, idx) => (
+                          <tr key={idx} className="product-info no-border">
+                            <td>{bill.name}</td>
+                            <td>${bill.price}</td>
+                            <td>{bill.size}</td>
+                            <td>x{bill.quantity}</td>
+                            <td>${bill.totalPrice}</td>
+                          </tr>
+                        ))}
+                        <tr>
+                          <td colSpan="4" className="text-right">
+                            <strong>Total</strong>
+                          </td>
+                          <td>
+                            <strong>${total}</strong>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })
+          )}
         </div>
       </div>
     </Modal>

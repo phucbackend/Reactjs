@@ -5,122 +5,6 @@ import "../Styles/Main.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-// const Cart = () => {
-//   const [cart, setCart] = useState([]);
-
-//   useEffect(() => {
-//     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-//     setCart(storedCart);
-//   }, []);
-
-//   const handleQuantityChange = (id, action) => {
-//     const updatedCart = cart.map((item) => {
-//       if (item.id === id) {
-//         const newQuantity =
-//           action === "increase" ? item.quantity + 1 : item.quantity - 1;
-
-//         // Đảm bảo số lượng không âm
-//         if (newQuantity >= 0) {
-//           return {
-//             ...item,
-//             quantity: newQuantity,
-//             totalPrice: newQuantity * item.price,
-//           };
-//         } else {
-//           return item; // Giữ nguyên nếu số lượng giảm xuống dưới 0
-//         }
-//       } else {
-//         return item; // Giữ nguyên các sản phẩm khác
-//       }
-//     });
-
-//     setCart(updatedCart);
-//     localStorage.setItem("cart", JSON.stringify(updatedCart));
-//   };
-
-//   const handleRemoveItem = (id) => {
-//     // Lấy danh sách giỏ hàng từ state
-//     const updatedCart = cart.filter((item) => item.id !== id);
-
-//     // Tái lập số thứ tự cho giỏ hàng
-//     const reindexedCart = updatedCart.map((item, index) => ({
-//       ...item,
-//       id: index + 1, // Sắp xếp lại ID sản phẩm bắt đầu từ 1
-//     }));
-
-//     // Lấy giá trị counter từ localStorage
-//     let currentCounter = parseInt(localStorage.getItem("counter"), 10);
-
-//     // Giảm giá trị counter đi 1
-//     currentCounter = currentCounter > 0 ? currentCounter - 1 : 0;
-
-//     // Lưu giá trị counter mới vào localStorage
-//     localStorage.setItem("counter", currentCounter);
-
-//     // Cập nhật state giỏ hàng
-//     setCart(reindexedCart);
-
-//     // Lưu giỏ hàng mới vào localStorage
-//     localStorage.setItem("cart", JSON.stringify(reindexedCart));
-//   };
-
-//   return (
-//     <div className="cart-table">
-//       <h2>Your Cart</h2>
-//       {cart.length === 0 ? (
-//         <p>Cart is empty</p>
-//       ) : (
-//         <table className="cart-item-table">
-//           <thead>
-//             <tr>
-//               <th>ID</th>
-//               <th>Name</th>
-//               <th>Price</th>
-//               <th>Quantity</th>
-//               <th>Total</th>
-//               <th>Action</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {cart.map((item) => (
-//               <tr key={item.id}>
-//                 <td>{item.id}</td>
-//                 <td>{item.name}</td>
-//                 <td>${item.price.toFixed(2)}</td>
-//                 <td>
-//                   <button
-//                     className="quantity-btn"
-//                     onClick={() => handleQuantityChange(item.id, "decrease")}
-//                     disabled={item.quantity === 1} // Disable decrease button if quantity is 1
-//                   >
-//                     -
-//                   </button>
-//                   {item.quantity}
-//                   <button
-//                     className="quantity-btn"
-//                     onClick={() => handleQuantityChange(item.id, "increase")}
-//                   >
-//                     +
-//                   </button>
-//                 </td>
-//                 <td>${(item.quantity * item.price).toFixed(2)}</td>
-//                 <td>
-//                   <button
-//                     className="remove-btn"
-//                     onClick={() => handleRemoveItem(item.id)}
-//                   >
-//                     Remove
-//                   </button>
-//                 </td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       )}
-//     </div>
-//   );
-// };
-
 //Chứa các thành phần thanh toán
 
 const Cart = () => {
@@ -241,17 +125,17 @@ const Cart = () => {
   );
 };
 export function PaymentInfo() {
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const isFormValid = () => {
     // Check if all required fields are filled and a payment method is selected
-    return name && phoneNumber && address;
+    return username && phoneNumber && address;
   };
   return (
     <div>
       <FillUserInfo
-        name={name}
+        name={username}
         setName={setName}
         phoneNumber={phoneNumber}
         setPhoneNumber={setPhoneNumber}
@@ -260,14 +144,18 @@ export function PaymentInfo() {
       />
       <FillPaymentMethod />
       <FillNote />
-      <ConfirmPayment isFormValid={isFormValid} />
+      <ConfirmPayment
+        isFormValid={isFormValid}
+        username={username}
+        address={address}
+      />
     </div>
   );
 }
 
 //Thành phần điền thông tin người dùng
 export function FillUserInfo({
-  name,
+  username,
   setName,
   phoneNumber,
   setPhoneNumber,
@@ -282,7 +170,7 @@ export function FillUserInfo({
           <input
             type="text"
             id="name"
-            value={name}
+            value={username}
             name="name"
             placeholder="Name"
             onChange={(e) => setName(e.target.value)}
@@ -420,30 +308,7 @@ export function FillNote() {
   );
 }
 
-//Thành phần xác nhận thanh toán - mua hàng
-// export function ConfirmPayment({ isFormValid }) {
-//   return (
-//     <div className="confirm-payment">
-//       <Link to="/successpage">
-//         <button
-//           className="btn-confirm"
-//           onClick={(e) => {
-//             if (!isFormValid()) {
-//               e.preventDefault();
-//               alert("Vui lòng điền thông tin");
-//             }
-//           }}
-//         >
-//           PAY
-//         </button>
-//       </Link>
-//       <Link to="/" style={{ textDecoration: "underline" }}>
-//         Add more ? ...
-//       </Link>
-//     </div>
-//   );
-// }
-export function ConfirmPayment({ isFormValid }) {
+export function ConfirmPayment({ isFormValid, username, address }) {
   const handlePayment = (e) => {
     if (!isFormValid()) {
       e.preventDefault();
@@ -461,6 +326,8 @@ export function ConfirmPayment({ isFormValid }) {
     const updatedCartWithDatetime = storedCart.map((item) => ({
       ...item,
       id: currentDatetime, // Replace the item id with the current datetime
+      username: username, // Add name to each item
+      address: address, // Add address to each item
     }));
 
     // Sort the items by datetime (reverse order)
